@@ -7,10 +7,16 @@ import { HomePage } from '../pages/home/home';
 import { FavesPage } from '../pages/faves/faves';
 import { ExplorePage } from '../pages/explore/explore';
 import { TabsPage } from '../pages/tabs/tabs';
+import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
 
 import { MapComponent } from '../components/map/map';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
+import { MapsProvider } from '../providers/maps/maps';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
@@ -19,6 +25,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     FavesPage,
     ExplorePage,
     TabsPage,
+    LoginPage,
+    RegisterPage,
     MapComponent
     
   ],
@@ -32,12 +40,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     FavesPage,
     ExplorePage,
-    TabsPage
+    TabsPage,
+    LoginPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    MapsProvider,
+    Geolocation
   ]
 })
 export class AppModule {}
