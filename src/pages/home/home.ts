@@ -16,7 +16,7 @@ export class HomePage {
  
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public geolocation: Geolocation) {
+              public _geo: Geolocation) {
  
   }
  
@@ -26,10 +26,10 @@ export class HomePage {
  
   loadMap(){
  
-    this.geolocation.getCurrentPosition().then((position) => {
+    this._geo.getCurrentPosition().then((position) => {
  
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
- 
+      console.log(latLng)
       let mapOptions = {
         center: latLng,
         zoom: 15,
