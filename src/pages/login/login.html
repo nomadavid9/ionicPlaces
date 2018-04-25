@@ -4,16 +4,42 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
+  <h4>Welcome to ionicPlaces!</h4>
   <ion-list>
     <ion-item>
-      <ion-label fixed>Email</ion-label>
-      <ion-input type="text" value=""></ion-input>
+      <ion-label floating>Email</ion-label>
+      <ion-input 
+        type="text"
+        [(ngModel)] = "user.email">
+      </ion-input>
     </ion-item>
+
     <ion-item>
-      <ion-label fixed>Password</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-label floating>Password</ion-label>
+      <ion-input 
+        type="password"
+        [(ngModel)] = "user.password">
+      </ion-input>
     </ion-item>
+    <br><br>
+
+    <div class="buttonWrap">
+      <button
+        class="loginButton"
+        ion-button
+        type="submit" 
+        (click)= "loginSubmit()" >
+        Login
+      </button>
+      <button
+        ion-button
+        class= "loginButton"
+        color= "secondary"
+        type= "submit" 
+        (click)= "navRegister()" >
+        Register
+      </button>
+    </div>
   </ion-list>
 </ion-content>

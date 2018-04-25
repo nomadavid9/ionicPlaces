@@ -16,9 +16,7 @@ export class MapComponent {
 
   loadMap(){
     this._geo.getCurrentPosition().then((position) => {
-      let latLng = new google.maps.LatLng(position.coords.latitude, 
-                                          position.coords.longitude);
-      console.log("hello", latLng)
+      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
       let mapOptions = {
         center: latLng,
         zoom: 15,
