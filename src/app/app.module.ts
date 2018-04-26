@@ -7,11 +7,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MyApp } from './app.component';
-import { HomePage } from './pages/home/home';
+import { HomePage } from '../pages/home/home';
 import { FavesPage } from '../pages/faves/faves';
 import { ExplorePage } from '../pages/explore/explore';
 import { TabsPage } from '../pages/tabs/tabs';
-import { LoginPage } from '.../pages/login/login';
+import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 
 import { MapComponent } from '../components/map/map';
@@ -27,7 +27,7 @@ import { UserProvider } from '../providers/user/user';
     FavesPage,
     ExplorePage,
     TabsPage,
-    LoginPage
+    LoginPage,
     RegisterPage,
     MapComponent
     
@@ -51,7 +51,7 @@ import { UserProvider } from '../providers/user/user';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MapsProvider
+    MapsProvider,
     Geolocation,
     UserProvider
   ]

@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-explore',
-  template: '<p>foo</p>',
+  template: 'explore.html',
 })
 export class ExplorePage {
 
