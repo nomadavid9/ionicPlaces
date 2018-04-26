@@ -6,7 +6,7 @@ import { FavesPage } from '../faves/faves';
 import { ExplorePage } from '../explore/explore';
 
 @Component({
-  selector: 'page-tabs',
+  selector: 'page-tab',
   templateUrl: 'tabs.html'
 })
 export class TabsPage {

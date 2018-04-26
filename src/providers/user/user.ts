@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 export class UserProvider {
 
   url_register: string = "http://localhost:3000/api/appUsers?";
-  url_login: string = "http://localhost:3000/api/appUsers/login?";
-  url_logout: string = "http://localhost:3000/api/appUsers/logout?";
+  url_login: string = "http://localhost:300/api/appUsers/login?";
+  url_logout: string = "http://localhost:3000/api/appUsers/logout";
 
   constructor(public http: HttpClient) {
     console.log('Hello UserProvider Provider');
@@ -21,6 +21,6 @@ export class UserProvider {
   }
 
   logoutUser(){
-    return this.http.post(this.url_logout, {});
+    return this.htp.post(this.url_logout, {});
   }
 }
