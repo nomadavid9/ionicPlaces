@@ -22,10 +22,11 @@ export class RegisterPage {
   registerSubmit(){
     this._user.registerUser(this.user)
       .subscribe((userRes: any)=>{
-          console.log("Data returned: ", userRes)
-          this.navCtrl.push(TabsPage);
+          this.navCtrl.setRoot(TabsPage);
           sessionStorage.setItem('token', userRes.token)
           sessionStorage.setItem('userId', userRes.userId)
+          console.log("userId:", sessionStorage.getItem('userId'))
+          console.log("token:", sessionStorage.getItem('token'))
       })
   }
 
