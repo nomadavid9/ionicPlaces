@@ -19,11 +19,12 @@ export class LoginPage {
   loginSubmit(){
     console.log(this.user);
     this._user.loginUser(this.user)
-      .subscribe((userRes) => {
+      .subscribe((userRes: any) => {
         console.log("Data returned: ", userRes)
         this.navCtrl.push(TabsPage);
-        //sessionStorage.setItem('token', userRes.token)
-        //sessionStorage.setItem('userId', userRes.userId)
+        sessionStorage.setItem('userId', userRes.userId)
+        sessionStorage.setItem('token', userRes.token)
+        
     })
   }
 

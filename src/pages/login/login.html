@@ -19,7 +19,8 @@
       <ion-label floating>Password</ion-label>
       <ion-input 
         type="password"
-        [(ngModel)] = "user.password">
+        [(ngModel)] = "user.password"
+        (keyUp.enter)= "loginSubmit()">
       </ion-input>
     </ion-item>
     <br><br>

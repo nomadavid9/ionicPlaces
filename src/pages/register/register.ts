@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user'
-
+import { TabsPage } from '../../pages/tabs/tabs';
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',
@@ -21,10 +21,11 @@ export class RegisterPage {
 
   registerSubmit(){
     this._user.registerUser(this.user)
-      .subscribe((userRes)=>{
+      .subscribe((userRes: any)=>{
           console.log("Data returned: ", userRes)
-          //sessionStorage.setItem('token', userRes.token)
-          //sessionStorage.setItem('userId', userRes.userId)
+          this.navCtrl.push(TabsPage);
+          sessionStorage.setItem('token', userRes.token)
+          sessionStorage.setItem('userId', userRes.userId)
       })
   }
 
