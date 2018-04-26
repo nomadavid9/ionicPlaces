@@ -7,18 +7,24 @@
 <ion-content padding>
   <h4>Welcome to ionicPlaces!</h4>
   <ion-list>
+
     <ion-item>
       <ion-label floating>Email</ion-label>
-      <ion-input type="text" [(ngModel)]="user.email">
+      <ion-input 
+        type="text" 
+        [(ngModel)]="user.email">
       </ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-header>
         <ion-label floating>Password</ion-label>
-        <ion-input type="password" [(ngModel)]="user.password" (keyUp.enter)="loginSubmit()">
+        <ion-input 
+          type="password" 
+          [(ngModel)]="user.password" 
+          (keyUp.enter)="loginSubmit()">
         </ion-input>
     </ion-item>
+  </ion-list>
     <br><br>
 
     <div class="buttonWrap">
@@ -29,5 +35,4 @@
         Register
       </button>
     </div>
-  </ion-list>
 </ion-content>
