@@ -1,10 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
 import { MapComponent} from '../../components/map/map';
-import { LoginPage } from '../../pages/login/login';
-
 import { UserProvider } from '../../providers/user/user';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -21,7 +19,8 @@ export class HomePage {
   }
 
   logoutUser(){
-    this.navCtrl.push(LoginPage);
+    sessionStorage.clear();
+    window.location.reload();
     this._user.logoutUser();
   }
 }
