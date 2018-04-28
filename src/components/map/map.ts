@@ -40,6 +40,7 @@ export class MapComponent {
   
       this.infowindow = new google.maps.InfoWindow();
       var service = new google.maps.places.PlacesService(this.map);
+      
       service.nearbySearch({
         location: {lat: location.coords.latitude, lng: location.coords.longitude},
         radius: 1000,
@@ -64,8 +65,9 @@ export class MapComponent {
       position: placeLoc
     });
   
-    google.maps.event.addListener(marker, 'click', function() {
+    google.maps.event.addListener(marker, 'click', () => {
+      console.log(this.infowindow);
       this.infowindow.setContent(place.name);
-      this.infowindow.open(this.map, this);
+      this.infowindow.open(this.map, marker);
     });
   }}
