@@ -19,7 +19,7 @@ export class HomePage {
     this._map.places
       .subscribe((updatedPlaces) => {
         this.places = updatedPlaces;
-        console.log(this.places);
+        console.log("Places on Screen: ", this.places);
       })
   }
 
