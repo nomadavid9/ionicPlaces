@@ -9,13 +9,18 @@ import { UserProvider } from '../../providers/user/user';
 })
 export class HomePage {
   @ViewChild(MapComponent) _map: MapComponent
-
+  places: any[];
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public _user: UserProvider) {}
 
   ionViewDidLoad(){
     this._map.loadMap();
+    this._map.places
+      .subscribe((updatedPlaces) => {
+        this.places = updatedPlaces;
+        console.log(this.places);
+      })
   }
 
   logoutUser(){

@@ -1,7 +1,9 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation';
-
+import { Platform } from 'ionic-angular';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 declare var google;
+  
 
 @Component({
   selector: 'map',
@@ -10,40 +12,60 @@ declare var google;
 export class MapComponent {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
-
-  constructor(public _geo: Geolocation) {
+  infowindow: any;
+  places: BehaviorSubject<any[]>;
+  options: {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
   }
 
-  loadMap(){
-    this._geo.getCurrentPosition().then((position) => {
-      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-      let mapOptions = {
-        center: latLng,
-        zoom: 15,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      }
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-    }, (err) => {
-      console.log(err);
-    });
+  constructor(public _geo: Geolocation, public platform: Platform) {
+    this.places = new BehaviorSubject([]);
   }
 
-  addInfoWindow(marker, content){
-    let infoWindow = new google.maps.InfoWindow({
-      content: content
-    });
-    google.maps.event.addListener(marker, 'click', () => {
-      infoWindow.open(this.map, marker);
-    });
+  //Updates places property in HomePage!
+  placesUpdate(places){
+    console.log("I Updated!")
+    this.places.next(places);
   }
 
-  addMarker(){
-    let marker = new google.maps.Marker({
+  loadMap() {
+    navigator.geolocation.getCurrentPosition((location) => {
+      console.log(location);
+      this.map = new google.maps.Map(this.mapElement.nativeElement, {
+        center: {lat: location.coords.latitude, lng: location.coords.longitude},
+        zoom: 15
+      });
+  
+      this.infowindow = new google.maps.InfoWindow();
+      var service = new google.maps.places.PlacesService(this.map);
+      service.nearbySearch({
+        location: {lat: location.coords.latitude, lng: location.coords.longitude},
+        radius: 1000,
+        type: ['store']
+      }, (results,status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          this.placesUpdate(results);
+          for (var i = 0; i < results.length; i++) {
+            this.createMarker(results[i]);
+          }
+        }
+      });
+    }, (error) => {
+      console.log(error);
+    }, this.options);
+  }
+
+  createMarker(place) {
+    var placeLoc = place.geometry.location;
+    var marker = new google.maps.Marker({
       map: this.map,
-      animation: google.maps.Animation.DROP,
-      position: this.map.getCenter()
+      position: placeLoc
     });
-    let content = "<h4>Information!</h4>";         
-    this.addInfoWindow(marker, content);
-  }  
-}
+  
+    google.maps.event.addListener(marker, 'click', function() {
+      this.infowindow.setContent(place.name);
+      this.infowindow.open(this.map, this);
+    });
+  }}
