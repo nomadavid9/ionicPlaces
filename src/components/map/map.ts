@@ -63,7 +63,7 @@ export class MapComponent {
     service.nearbySearch({
       location: location,
       radius: radius,
-      type: ['store']
+      type: ['point_of_interest']
     }, (results,status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         //update Behavior subject for populating menu on HomePage
@@ -110,5 +110,8 @@ export class MapComponent {
     //creates new map by clicking 'update' FAB
     this.newMap(this.newCenter, zoom)
     
+  }
+  placeSelected(){
+    console.log("places:", this.places);
   }
 }
