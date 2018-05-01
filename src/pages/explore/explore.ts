@@ -28,6 +28,21 @@ export class ExplorePage {
           }
         }
       })
+    this.priceLevel(this.places);
+    console.log(this.places)
+  }
+
+  priceLevel(placeArray){
+    for(let element of placeArray){
+      console.log(element)
+      element.level_array = [];
+      if(element.price_level){
+        for(let i = 0; i < element.price_level; i++){
+          element.level_array.push(i);
+        }
+      }
+    }
+    return placeArray;
   }
 
 }

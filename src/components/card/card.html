@@ -1,11 +1,15 @@
 <ion-card *ngIf="place.photos">
     <img
     src="{{place.photos[0].photo_reference}}"/>
-    <ion-card-header>
-      {{place.vicinity}}
-    </ion-card-header>
-      rating: {{place.rating}}
-      
     <ion-card-content>
+      <h6><strong>Address:</strong> {{place.vicinity}}</h6>
+      <h6><strong>rating:</strong> {{place.rating}}</h6>
+      <h6><strong>Price Level:</strong>
+        <div *ngIf= "place.level_array">
+          <div *ngFor = "let cash of place.level_array">
+            <ion-icon name="cash"></ion-icon>
+          </div>
+        </div>
+      </h6>
     </ion-card-content>
   </ion-card>
