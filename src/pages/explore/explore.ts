@@ -19,7 +19,6 @@ export class ExplorePage {
     this._places.places
       .subscribe((updatedPlaces: any) => {
         this.places = updatedPlaces;
-        console.log("Places on Screen: ", this.places);
         for (let place of this.places){
           if(place.photos){
             place.photos[0]
@@ -28,13 +27,12 @@ export class ExplorePage {
           }
         }
       })
-    this.priceLevel(this.places);
-    console.log(this.places)
+    this.priceLevel(this.places); 
+    console.log("With price_level Array: ", this.places)
   }
 
   priceLevel(placeArray){
     for(let element of placeArray){
-      console.log(element)
       element.level_array = [];
       if(element.price_level){
         for(let i = 0; i < element.price_level; i++){
@@ -45,4 +43,5 @@ export class ExplorePage {
     return placeArray;
   }
 
+  
 }

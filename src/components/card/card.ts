@@ -11,4 +11,9 @@ export class CardComponent {
 
   constructor() {
   }
+
+  addToFaves(place: any){
+    console.log("Added " + place.name + " to Favorites")
+    console.log(place);
+  }
 }

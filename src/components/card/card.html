@@ -2,14 +2,29 @@
     <img
     src="{{place.photos[0].photo_reference}}"/>
     <ion-card-content>
-      <h6><strong>Address:</strong> {{place.vicinity}}</h6>
-      <h6><strong>rating:</strong> {{place.rating}}</h6>
-      <h6><strong>Price Level:</strong>
-        <div *ngIf= "place.level_array">
-          <div *ngFor = "let cash of place.level_array">
-            <ion-icon name="cash"></ion-icon>
-          </div>
+      <div class="card-container">
+        <div class="card-column">
+          <h6><strong>{{place.name}}</strong></h6>
+          <h6><strong>Address:</strong> {{place.vicinity}}</h6>
+          <h6><strong>Rating:</strong> {{place.rating}}</h6>
+            <h6 class="cash-container">
+              <strong>Price Level: </strong>
+              <div class="icon-container" 
+                   *ngIf="place.level_array; else other">
+                <div *ngFor = "let cash of place.level_array">
+                  
+                  <ion-icon id="cash" name="cash"></ion-icon>
+                  <br>
+                </div>
+              </div>
+              <ng-template #other>N/A</ng-template>
+            </h6>
         </div>
-      </h6>
+        <div class='card-column-2'>
+          <button class="heart" (click)="addToFaves(place)" ion-button end right>
+            <ion-icon name="heart"></ion-icon>
+          </button>
+        </div>
+      </div>
     </ion-card-content>
   </ion-card>
