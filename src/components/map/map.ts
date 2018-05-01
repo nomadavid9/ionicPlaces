@@ -1,10 +1,8 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Platform } from 'ionic-angular';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
+import { PlacesProvider } from "../../providers/places/places";
 declare var google;
-  
 
 @Component({
   selector: 'map',
@@ -16,20 +14,15 @@ export class MapComponent {
   infowindow: any;
   myLocation: any;
   newCenter: any;
-  places: BehaviorSubject<any[]>;
   options: {
     enableHighAccuracy: true,
     timeout: 5000,
     maximumAge: 0
   }
 
-  constructor(public _geo: Geolocation, public platform: Platform) {
-    this.places = new BehaviorSubject([]);
-  }
-
-  //Updates places array in HomePage!
-  placesUpdate(places){
-    this.places.next(places);
+  constructor(public _geo: Geolocation, 
+              public platform: Platform,
+              public _places: PlacesProvider) {
   }
 
   //Loads initial map based on current geoLocation
@@ -63,11 +56,11 @@ export class MapComponent {
     service.nearbySearch({
       location: location,
       radius: radius,
-      type: ['point_of_interest']
+      type: ['store']
     }, (results,status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         //update Behavior subject for populating menu on HomePage
-        this.placesUpdate(results);
+        this._places.placesUpdate(results);
         for (var i = 0; i < results.length; i++) {
           //Creates a marker for each place
           this.createMarker(results[i]);
@@ -110,8 +103,5 @@ export class MapComponent {
     //creates new map by clicking 'update' FAB
     this.newMap(this.newCenter, zoom)
     
-  }
-  placeSelected(){
-    console.log("places:", this.places);
   }
 }

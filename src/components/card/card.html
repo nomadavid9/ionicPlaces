@@ -1,0 +1,11 @@
+<ion-card *ngIf="place.photos">
+    <img
+    src="{{place.photos[0].photo_reference}}"/>
+    <ion-card-header>
+      {{place.vicinity}}
+    </ion-card-header>
+      rating: {{place.rating}}
+      
+    <ion-card-content>
+    </ion-card-content>
+  </ion-card>

@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { MapComponent} from '../../components/map/map';
+
 import { UserProvider } from '../../providers/user/user';
-import { MenuController } from "ionic-angular"
+import { PlacesProvider } from "../../providers/places/places"
 
 @Component({
   selector: 'page-home',
@@ -16,15 +17,16 @@ export class HomePage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public _user: UserProvider,
-              public menuCtrl: MenuController) {}
+              public _places: PlacesProvider) {}
 
   ionViewDidLoad(){
     this._map.loadMap();
-    this._map.places
-      .subscribe((updatedPlaces) => {
+    this._places.places
+      .subscribe((updatedPlaces: any) => {
         this.places = updatedPlaces;
-        console.log("Places on Screen: ", this.places);
+        console.log("Places on Screen: ", this.places)
       })
+    
   }
 
   placeSelected(place){
