@@ -18,7 +18,7 @@ export class HomePage {
               public _user: UserProvider,
               public _places: PlacesProvider) {}
 
-  ionViewDidLoad(){
+  ionViewWillEnter(){
     this._map.loadMap();
     this._places.places
       .subscribe((updatedPlaces: any) => {
@@ -27,14 +27,9 @@ export class HomePage {
       })
     
   }
-
-  placeSelected(place){
-    console.log(place.name);
-  }
-
   logoutUser(){
-    sessionStorage.clear();
     window.location.reload();
+    sessionStorage.clear();
     this._user.logoutUser();
   }
 }
