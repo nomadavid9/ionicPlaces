@@ -8,7 +8,6 @@ import { PlacesProvider } from "../../providers/places/places"
 })
 export class ExplorePage {
   places: any[];
-  placePhotos: any[] = [];
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -19,6 +18,7 @@ export class ExplorePage {
     this._places.places
       .subscribe((updatedPlaces: any) => {
         this.places = updatedPlaces;
+        console.log(this.places)
         for (let place of this.places){
           if(place.photos){
             place.photos[0]
