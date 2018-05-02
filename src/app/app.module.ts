@@ -15,10 +15,11 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 
 import { MapComponent } from '../components/map/map';
+import { CardComponent } from '../components/card/card';
 
-import { MapsProvider } from '../providers/maps/maps';
 import { Geolocation } from '@ionic-native/geolocation';
 import { UserProvider } from '../providers/user/user';
+import { PlacesProvider } from '../providers/places/places';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { UserProvider } from '../providers/user/user';
     TabsPage,
     LoginPage,
     RegisterPage,
-    MapComponent
+    MapComponent,
+    CardComponent
     
   ],
   imports: [
@@ -51,9 +53,9 @@ import { UserProvider } from '../providers/user/user';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MapsProvider,
     Geolocation,
-    UserProvider
+    UserProvider,
+    PlacesProvider
   ]
 })
 export class AppModule {}
