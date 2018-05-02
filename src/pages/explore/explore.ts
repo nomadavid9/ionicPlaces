@@ -8,7 +8,6 @@ import { PlacesProvider } from "../../providers/places/places"
 })
 export class ExplorePage {
   places: any[];
-  placePhotos: any[] = [];
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -20,27 +19,27 @@ export class ExplorePage {
       .subscribe((updatedPlaces: any) => {
         this.places = updatedPlaces;
         for (let place of this.places){
-          if(place.photos){
-            place.photos[0]
-              .photo_reference = (place.photos[0]
-                .getUrl({"maxWidth": 200,"maxHeight": 200}))
-          }
+          this.priceLevel(place); 
+          this.getPhoto(place)
         }
       })
-    this.priceLevel(this.places); 
     console.log("With price_level Array: ", this.places)
   }
-
-  priceLevel(placeArray){
-    for(let element of placeArray){
-      element.level_array = [];
-      if(element.price_level){
-        for(let i = 0; i < element.price_level; i++){
-          element.level_array.push(i);
+  getPhoto(place){
+    if(place.photos){
+      place.photo_reference = (place.photos[0]
+          .getUrl({"maxWidth": 200,"maxHeight": 200}))
+    }
+    return place;
+  }
+  priceLevel(place){
+      place.level_array = [];
+      if(place.price_level){
+        for(let i = 0; i < place.price_level; i++){
+          place.level_array.push(i);
         }
       }
-    }
-    return placeArray;
+    return place;
   }
 
   

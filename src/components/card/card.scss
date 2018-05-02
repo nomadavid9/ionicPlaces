@@ -1,3 +1,26 @@
 card {
+    .card-container{
+        display:flex;
+        flex-direction:row;
+        justify-content:space-between;
 
+        .card-column{
+            display:flex;
+            flex-direction:column;
+            .cash-container{
+                display:flex;
+                flex-direction: row;
+            }
+            .icon-container{
+                margin-top: 1.8px;
+                margin-left:5px;
+                display: inline-flex;
+            }
+        }
+        .card-column-2{
+            display:flex;
+            flex-direction:column-reverse;
+            justify-content: start;
+        }   
+    }
 }

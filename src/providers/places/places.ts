@@ -11,7 +11,7 @@ export class PlacesProvider {
     this.places = new BehaviorSubject([]);
   }
 
-  placesUpdate(places){
+  placesUpdate(places: any){
     this.places.next(places);
   }
 }

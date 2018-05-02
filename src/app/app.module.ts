@@ -13,9 +13,8 @@ import { ExplorePage } from '../pages/explore/explore';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
-
+import { CardComponent } from '../components/card/card'
 import { MapComponent } from '../components/map/map';
-import { CardComponent } from '../components/card/card';
 
 import { Geolocation } from '@ionic-native/geolocation';
 import { UserProvider } from '../providers/user/user';
