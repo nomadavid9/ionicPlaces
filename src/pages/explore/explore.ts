@@ -20,16 +20,18 @@ export class ExplorePage {
         this.places = updatedPlaces;
         for (let place of this.places){
           this.priceLevel(place); 
-          if(place.photos){
-            place.photos[0]
-              .photo_reference = (place.photos[0]
-                .getUrl({"maxWidth": 200,"maxHeight": 200}))
-          }
+          this.getPhoto(place)
         }
       })
     console.log("With price_level Array: ", this.places)
   }
-
+  getPhoto(place){
+    if(place.photos){
+      place.photo_reference = (place.photos[0]
+          .getUrl({"maxWidth": 200,"maxHeight": 200}))
+    }
+    return place;
+  }
   priceLevel(place){
       place.level_array = [];
       if(place.price_level){

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { UserProvider } from '../../providers/user/user';
 
 @Component({
   selector: 'page-faves',
@@ -7,11 +8,19 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class FavesPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  favPlaces: any;
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public _user: UserProvider) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FavesPage');
+  ionViewWillEnter() {
+    this._user.getFaves()
+      .subscribe((data) =>{
+        console.log(data);
+        this.favPlaces = data;
+    })
   }
 
 }

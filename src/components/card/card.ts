@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-
+import { UserProvider } from '../../providers/user/user'
 @Component({
   selector: 'card',
   templateUrl: 'card.html'
@@ -7,11 +7,22 @@ import { Component, Input } from '@angular/core';
 export class CardComponent {
   @Input() place
 
-  constructor() {
+  constructor(private _user: UserProvider) {
   }
   
   addToFaves(place: any){
-    console.log("Added " + place.name + " to Favorites")
-    console.log(place);
+    let favPlace: any = {
+      "name": place.name,
+      "photo_reference": place.photo_reference,
+      "vicinity": place.vicinity,
+      "rating": place.rating,
+      "level_array": place.level_array
+    }
+    console.log(favPlace);
+    this._user.addToFaves(favPlace)
+      .subscribe((data)=>{
+        console.log("Added " + place.name + " to Favorites")
+        console.log(data);
+      })
   }
 }
