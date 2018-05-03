@@ -8,10 +8,10 @@
 
 
 <ion-content padding>
-  <ion-list class="cards-container" >
+  <ion-list>
       <ion-item *ngFor="let place of favPlaces">
         <h3>{{place.title}}</h3>
-        <card [place] = "place"></card>
+        <card [place] = "place" ></card>
       </ion-item>
     </ion-list>
 </ion-content>
