@@ -12,7 +12,6 @@ import { PlacesProvider } from "../../providers/places/places"
 export class HomePage {
   @ViewChild(MapComponent) _map: MapComponent
   places: any[];
-  content: any;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -34,8 +33,8 @@ export class HomePage {
   }
 
   logoutUser(){
-    sessionStorage.clear();
     window.location.reload();
+    sessionStorage.clear();
     this._user.logoutUser();
   }
 }

@@ -4,22 +4,29 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UserProvider {
 
-  url_register: string = "http://localhost:3000/api/appUsers?";
-  url_login: string = "http://localhost:3000/api/appUsers/login?";
-  url_logout: string = "http://localhost:3000/api/appUsers/logout?";
+  base_url: string = "http://localhost:3000/api/appUsers";
+  userId: string;
 
   constructor(public http: HttpClient) {
   }
 
   loginUser(user){
-    return this.http.post(this.url_login, user)
+    return this.http.post(this.base_url + "/login?", user)
   }
 
   registerUser(user){
-    return this.http.post(this.url_register, user)
+    return this.http.post(this.base_url + "?", user)
   }
 
   logoutUser(){
-    return this.http.post(this.url_logout, {});
+    return this.http.post(this.base_url + "/logout?", {});
+  }
+
+  addToFaves(place: any){
+    return this.http.post(this.base_url + "/" + sessionStorage.userId + "/places?" + "access_token=" + sessionStorage.token, place)
+  }
+
+  getFaves(){
+    return this.http.get(this.base_url + "/" + sessionStorage.userId + "/places?" + "access_token=" + sessionStorage.token) 
   }
 }
