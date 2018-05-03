@@ -1,13 +1,16 @@
 import { Component, Input } from '@angular/core';
 import { UserProvider } from '../../providers/user/user'
+import { FavesPage } from '../../pages/faves/faves';
 @Component({
   selector: 'card',
   templateUrl: 'card.html'
 })
 export class CardComponent {
-  @Input() place
+  @Input() place: any;
+  @Input() favesActive: any;
+  activeFaves: any = this._faves.favesActive;
 
-  constructor(private _user: UserProvider) {
+  constructor(private _user: UserProvider, private _faves: FavesPage) {
   }
   
   addToFaves(place: any){

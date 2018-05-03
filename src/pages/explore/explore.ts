@@ -14,7 +14,7 @@ export class ExplorePage {
               public _places: PlacesProvider) {
   }
 
-  ionViewDidLoad(){
+  ionViewWillEnter(){
     this._places.places
       .subscribe((updatedPlaces: any) => {
         this.places = updatedPlaces;
