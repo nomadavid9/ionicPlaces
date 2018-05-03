@@ -6,9 +6,8 @@
 
 
 <ion-content padding>
-  <ion-list class="cards-container" >
-    <ion-item *ngFor="let place of places">
-      <h3>{{place.title}}</h3>
+  <ion-list class="cards-container">
+    <ion-item class="card" *ngFor="let place of places">
       <card [place] = "place"></card>
     </ion-item>
   </ion-list>
