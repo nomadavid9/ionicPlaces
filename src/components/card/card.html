@@ -10,13 +10,12 @@
           <h6><strong>Rating:</strong> {{place.rating}}</h6>
             <h6 class="cash-container">
               <strong>Price Level: </strong>
-              <div class="icon-container" *ngIf="place.level_array else doThis">
+              <div class="icon-container" *ngIf="place.level_array">
                 <div *ngFor = "let cash of place.level_array">
                   <ion-icon id="cash" name="cash"></ion-icon>
                   <br>
                 </div>
               </div>
-              <ng-template #doThis>N/A</ng-template>
             </h6>
         </div>
         <div class='card-column-2'>
