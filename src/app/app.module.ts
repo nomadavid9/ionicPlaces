@@ -51,10 +51,10 @@ import { PlacesProvider } from '../providers/places/places';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
     Geolocation,
     UserProvider,
-    PlacesProvider
+    PlacesProvider,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}
