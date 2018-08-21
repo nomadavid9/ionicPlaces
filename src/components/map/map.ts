@@ -51,6 +51,9 @@ export class MapComponent {
     this.placeSearch(location, newRadius);
   }
 
+  centerMap(){
+    this.newMap(this.myLocation, 15)
+  }
   placeSearch(location, radius){
     var service = new google.maps.places.PlacesService(this.map);
     service.nearbySearch({
